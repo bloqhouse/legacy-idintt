@@ -19,3 +19,6 @@ hs_err_pid*
 
 # Logfiles
 *.log
+
+# Add the jar of idin
+!/idin-library-java1.041/Library/net.bankid.merchant.library.jar
