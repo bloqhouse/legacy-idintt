@@ -16,3 +16,6 @@ hs_err_pid*
 
 # Nohup Output file
 *.out
+
+# Logfiles
+*.log
