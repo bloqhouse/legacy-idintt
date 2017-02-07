@@ -18,7 +18,7 @@ services:
     command: fabric-ca server start -ca testdata/ec.pem -ca-key testdata/ec-key.pem -config testdata/testconfig.json -address="0.0.0.0"
 
   orderer:
-    image: hyperledger/fabric-orderer-fixed
+    image: hyperledger/fabric-orderer-fix
     container_name: fabric-orderer
     hostname: orderer
     environment:

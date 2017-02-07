@@ -12,6 +12,6 @@ docker pull yeasy/hyperledger-fabric-base:latest \
   && docker tag yeasy/hyperledger-fabric-base hyperledger/fabric-ccenv:x86_64-1.0.0-preview \
   && docker tag hyperledger/fabric-ccenv:x86_64-1.0.0-preview hyperledger/fabric-ccenv:x86_64-1.0.0-snapshot-preview
 
-docker build ./orderer/ -t hyperledger/fabric-orderer-fixed
+docker build ./orderer-fix/ -t hyperledger/fabric-orderer-fix
 
 docker-compose up
