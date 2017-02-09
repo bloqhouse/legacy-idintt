@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+ <appSettings>
+    <add key="BankId.Merchant.MerchantID" value="0030000083" />
+    <add key="BankId.Merchant.SubID" value="0" />
+    <add key="BankId.Merchant.ReturnUrl" value="http://idintt.notarynodes.org/website/getresponse.php" />
+
+    <!--
+    <add key="BankId.Acquirer.DirectoryUrl" value="https://abnamro.bank-request.com/bvn-idx-bankid-rs/bankidGateway" />
+    <add key="BankId.Acquirer.TransactionUrl" value="https://abnamro.bank-request.com/bvn-idx-bankid-rs/bankidGateway" />
+    <add key="BankId.Acquirer.StatusUrl" value="https://abnamro.bank-request.com/bvn-idx-bankid-rs/bankidGateway" />
+    -->
+    
+    <add key="BankId.Acquirer.DirectoryUrl" value="https://www.fried-air.com/acquirer" />
+    <add key="BankId.Acquirer.TransactionUrl" value="https://www.fried-air.com/acquirer" />
+    <add key="BankId.Acquirer.StatusUrl" value="https://www.fried-air.com/acquirer" />
+
+    <add key="BankId.Merchant.Certificate.File" value="merchant.pfx" />
+    <add key="BankId.Merchant.Certificate.Password" value="harry" />
+    <add key="BankId.RoutingService.Certificate.File" value="rsp.cer" />
+    <add key="BankId.SAML.Certificate.File" value="merchant.pfx" />
+    <add key="BankId.SAML.Certificate.Password" value="harry" />
+
+    <add key="BankId.Logs.Enabled" value="true" />
+    <add key="BankId.ServiceLogs.Enabled" value="false" />
+    <add key="BankId.ServiceLogs.Location" value="/tmp/" />
+    <add key="BankId.ServiceLogs.Pattern" value="%Y-%M-%D/%h%m%s.%f-%a.xml" />
+  </appSettings>
+</configuration>
