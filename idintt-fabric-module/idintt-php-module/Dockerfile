@@ -5,4 +5,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) mcrypt
 
 COPY . /var/www/html/
+
+EXPOSE 443
 EXPOSE 80

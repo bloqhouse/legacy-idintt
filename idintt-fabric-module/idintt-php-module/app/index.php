@@ -109,7 +109,7 @@ if($step==2){
 									$key = substr($key, strpos($key, ".") + 1);
 								?>
 									<label for="<?php echo $key; ?>"><?php echo $key; ?></label>
-									<input type="text" id="f<?php echo $key; ?>" name="<?php echo $key; ?>" placeholder="<?php echo $value; ?>" readonly>
+									<input type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>" placeholder="<?php echo $value; ?>" readonly>
 						    <?php }
 						} else {
 						?>
@@ -121,7 +121,7 @@ if($step==2){
 							<input type="text" id="org2" name="org2" placeholder="Harrie's lucht kasteel" readonly><br>
 							<input type="text" id="org1" name="org1" placeholder="Autoriteit Financiele Markten" readonly><br>
 							<input type="text" id="org1" name="org1" placeholder="De Belastingdienst" readonly>
-							<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="2) Register my identity" /></div>
+							<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="2) Register and return" /></div>
 	  			</div>
 					<?php } ?>
 				</form>
