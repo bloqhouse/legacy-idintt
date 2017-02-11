@@ -1,0 +1,11 @@
+exclude:
+- /hackathon-module/blockchain/src/build-chaincode/.*
+- /hackathon-module/idintt-php-module/app/js/modernizr.custom.js
+- /hackathon-module/idintt-php-module/library/.*
+component_depth: 1
+languages:
+- go
+- javascript
+- php
+- script
+- typescript
