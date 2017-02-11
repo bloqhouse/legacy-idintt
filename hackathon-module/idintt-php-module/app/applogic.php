@@ -14,11 +14,12 @@ Configuration::defaultInstance()->load("bankid-config.xml");
 if(isset($_GET['step'])){$step = $_GET['step'];}
 else{$step=0;}
 
-// Get overview of available banks
+// Get overview of available banks and store redirecturl
 if($step==0){
 	$comm = new Communicator();
 	$Model = $comm->getDirectory();
-	$_SESSION['redirectUrl'] = $_POST['redirectUrl'];
+	if(isset($_POST['redirectUrl'])){$_SESSION['redirectUrl']= $_POST['redirectUrl'];}
+	else{$_SESSION['redirectUrl']="index.php";}
 }
 
 // Create a transaction request and redirect to bank
@@ -72,8 +73,4 @@ if($step==3){
 		$tcert = str_replace(' ', '', $tcert);
 }
 
-// Redirect to initiating application
-if($step==4){
-	header('Location: '."./index-demo.php");
-}
 ?>

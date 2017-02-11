@@ -6,9 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>iDIN-TT trusted blockchain identities</title>
-		<meta name="description" content="Blueprint: Blueprint: Responsive Multi-Column Form" />
-		<meta name="keywords" content="responsive form, inputs, html5, responsive, multi-column, fluid, media query, template" />
-		<meta name="author" content="Codrops" />
+		<meta name="author" content="Hackathon team iDINtt" />
 		<link rel="stylesheet" type="text/css" href="css/default.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/modernizr.custom.js"></script>
@@ -19,7 +17,7 @@
 			<header class="clearfix">
 				<span>idintt</span>
 				<?php if($step==3){ ?>
-					<h1 style="background-color:#09D261">You're identity is registered on the blockchain</h1>
+					<h1 style="background-color:#09D261">Your identity is registered on the blockchain</h1>
 				<?php } else { ?>
 					<h1>Your trusted blockchain identity provider</h1>
 				<?php } ?>

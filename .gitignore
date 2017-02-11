@@ -33,6 +33,5 @@ hs_err_pid*
 *.sh
 
 # Exclude demo files
-hackathon-module/idintt-php-module/demo-scripts
-hackathon-module/idintt-php-module/merchant
-hackathon-module/idintt-php-module/app/index-demo.php
+hackathon-module/idintt-php-module/app/demo/
+hackathon-module/idintt-php-module/merchant/
