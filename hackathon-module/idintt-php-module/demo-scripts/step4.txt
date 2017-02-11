@@ -1,0 +1,6 @@
+--2017-02-11 15:19:10--  https://www.fried-air.com/merchant
+Resolving www.fried-air.com... 45.62.122.93
+Connecting to www.fried-air.com|45.62.122.93|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://bankieren.triodos.nl/idin-online/pages/transaction.action?trxid=0030000020199355&cc=8917871597908229 [following]
+0 redirections exceeded.
