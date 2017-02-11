@@ -1,7 +1,10 @@
-Run docker container
+#Readme
 
-docker build -t my-php-app .;
-docker run -d -p 80:80 -p 443:443 --name my-running-app my-php-app
+### First step: build and run the docker container
 
-Go to
-localhost/app/index.php
+> $ docker build -t idintt-php-app .;
+> $ docker run -d -p 80:80 -p 443:443 --name running-idintt-php-app idintt-php-app
+
+### Second step: launch the web app
+
+> Open http://localhost/app in your browser
