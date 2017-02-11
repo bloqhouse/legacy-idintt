@@ -17,3 +17,6 @@ The docker compose will create containers for the:
 ```
 In your browser go to http://localhost
 ```
+
+### Warning
+> Contact team idintt to receive the required certificates for the iDIN test service
