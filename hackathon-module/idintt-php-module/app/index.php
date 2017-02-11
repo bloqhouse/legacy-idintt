@@ -45,8 +45,13 @@
 									<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="1) Go to your bank" /></div>
 								</form>
 							<?php } if($step==3){ ?>
-								<form action="index.php" method="get">
-									<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="3) Go back to Harries Luchtk." /></div>
+								<form action="<?php echo $_SESSION['redirectUrl']; ?>" method="POST">
+								    <textarea id="keys" name="keys">
+								        <?php echo $tcert; ?>
+								    </textarea>
+									<div class="cbp-mc-submit-wrap">
+									    <input class="cbp-mc-submit" type="submit" value="3) Go back to Harries Luchtk." />
+									</div>
 								</form>
 							<?php } ?>
 					</div>
@@ -60,7 +65,7 @@
 													$key = substr($key, strpos($key, ".") + 1);
 												?>
 													<label for="<?php echo $key; ?>"><?php echo $key; ?></label>
-													<input type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>" placeholder="<?php echo $value; ?>" readonly>
+													<input type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
 										    <?php }
 										}
 									?>

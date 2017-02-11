@@ -49,7 +49,9 @@ export abstract class Blockchain {
 
   public async createClient(chaincodeId: string): Promise<BlockchainClient> {
     if (!chaincodeId) {
-      throw new Error('ChaincodeId cannot be empty.');
+      // TODO: HACK HACK HACK HACK
+      chaincodeId = 'none';
+      //throw new Error('ChaincodeId cannot be empty.');
     }
 
     return new BlockchainClient(chaincodeId, this.chain, this.logger);

@@ -17,6 +17,7 @@ else{$step=0;}
 if($step==0){
 	$comm = new Communicator();
 	$Model = $comm->getDirectory();
+	$_SESSION['redirectUrl'] = $_POST['redirectUrl'];
 }
 
 if($step==1){
@@ -39,6 +40,32 @@ if($step==2){
 	$s = new StatusRequest();
 	$s->setTransactionID($_GET['trxid']);
 	$Model = $comm->getResponse($s);
+}
+
+// Post to fabric-module api
+if($step==3){
+    function postJson($url, $data) {
+        $ch = curl_init($url);
+        $data_string = json_encode($data);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($data_string))
+        );
+
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
+    }
+
+    $data = array(
+    	'name' => urlencode('Name'), // TODO
+    	'bin' => urlencode($_GET['bin']),
+    	'vendorId' => urlencode('HARRY'),
+    );
+    $tcert = postJson('http://fabric-module:8080/api/v1/user', $data);
 }
 
 if($step==4){

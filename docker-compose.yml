@@ -28,7 +28,7 @@ membersrvc:
 fabric-module:
   build: ./hackathon-module/idintt-fabric-module
   ports:
-    - "8080:8080"
+    - "8888:8080"
   environment:
     - NODE_ENV=development
     - MEMBERSRVC_ADDR=membersrvc:7054
@@ -42,9 +42,17 @@ fabric-module:
   links:
     - membersrvc
     - vp0
-  command: bash -c "sleep 8; cat chaincodeId || (grunt build; npm run deploy;) && grunt"
+  command: bash -c "grunt"
 
-
+php-module:
+  build: ./hackathon-module/idintt-php-module
+  links:
+    - fabric-module
+  volumes:
+    - ./hackathon-module/idintt-php-module:/var/www/html
+  ports:
+    - "443:443"
+    - "80:80"
 
 #networks:
 #  default:
