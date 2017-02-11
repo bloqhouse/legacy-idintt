@@ -1,0 +1,45 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "declaration": false,
+        "removeComments": true,
+        "sourceMap": true,
+        "noLib": false,
+        "outDir": "dist",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true
+    },
+    "exclude": [
+        "node_modules",
+        "typings/**/*.d.ts",
+        "src/build-chaincode/vendor/github.com/hyperledger/fabric/*"
+    ],
+    "filesGlob": [
+        "src/api/v1/**/*.ts",
+        "src/auth/*.ts",
+        "src/blockchain/*.ts",
+        "src/blockchain/deployBluemix/**.ts",
+        "src/blockchain/deployLocal/**.ts",
+        "src/chargePoint/*.ts",
+        "src/testdata/*.ts",
+        "src/utils/*.ts",
+        "src/app.js",
+        "src/*.ts",
+        "typings/index.d.ts"
+    ],
+    "files": [
+        "src/api/v1/UserController.ts",
+        "src/blockchain/IdinTT.ts",
+        "src/testdata/testData.ts",
+        "src/utils/BlockchainUserError.ts",
+        "src/utils/Directory.ts",
+        "src/utils/JSONWebToken.ts",
+        "src/utils/LoggerFactory.ts",
+        "src/utils/LoggerSettings.ts",
+        "src/utils/Password.ts",
+        "src/utils/UserAuthenticator.ts",
+        "src/app.ts",
+        "src/config.ts"
+    ]
+}
