@@ -30,5 +30,7 @@ hs_err_pid*
 # No shell scripts
 *.sh
 
-# Exclude demofolder
+# Exclude demo files
 hackathon-module/idintt-php-module/demo-scripts
+hackathon-module/idintt-php-module/merchant
+hackathon-module/idintt-php-module/app/index-demo.php
