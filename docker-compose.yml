@@ -26,7 +26,7 @@ membersrvc:
    command: membersrvc
 
 fabric-module:
-  build: ./idintt-module/idintt-fabric-module
+  build: ./hackathon-module/idintt-fabric-module
   ports:
     - "8080:8080"
   environment:
@@ -35,10 +35,10 @@ fabric-module:
     - PEER_ADDR=vp0:7051
     - GOPATH=/usr/src/chaincode
   volumes:
-    - ./idintt-module/idintt-fabric-module/src:/usr/src/app/src
-    - ./idintt-module/idintt-fabric-module/resources:/usr/src/app/resources
-    - ./idintt-module/idintt-fabric-module/tsconfig.json:/usr/src/app/tsconfig.json
-    - ./idintt-module/blockchain:/usr/src/blockchain
+    - ./hackathon-module/idintt-fabric-module/src:/usr/src/app/src
+    - ./hackathon-module/idintt-fabric-module/resources:/usr/src/app/resources
+    - ./hackathon-module/idintt-fabric-module/tsconfig.json:/usr/src/app/tsconfig.json
+    - ./hackathon-module/blockchain:/usr/src/blockchain
   links:
     - membersrvc
     - vp0
