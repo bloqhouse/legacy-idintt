@@ -69,9 +69,10 @@ if($step==3){
     	'name' => urlencode('Name'), // TODO
     	'bin' => urlencode($_GET['bin']),
     	'vendorId' => urlencode('HARRY'),
+    	'uid' => urlencode(	$_SESSION["uid"])
     );
     $tcert = postJson('http://fabric-module:8080/api/v1/user', $data);
-		$tcert = str_replace(' ', '', $tcert);
+	$tcert = str_replace(' ', '', $tcert);
 }
 
 ?>
