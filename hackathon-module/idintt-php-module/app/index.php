@@ -9,10 +9,10 @@
 		<meta name="description" content="Blueprint: Blueprint: Responsive Multi-Column Form" />
 		<meta name="keywords" content="responsive form, inputs, html5, responsive, multi-column, fluid, media query, template" />
 		<meta name="author" content="Codrops" />
-		<link rel="shortcut icon" href="../favicon.ico">
 		<link rel="stylesheet" type="text/css" href="css/default.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/modernizr.custom.js"></script>
+		<script src="https://cdn.jsdelivr.net/clipboard.js/1.6.0/clipboard.min.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -46,12 +46,15 @@
 								</form>
 							<?php } if($step==3){ ?>
 								<form action="<?php echo $_SESSION['redirectUrl']; ?>" method="POST">
-								    <textarea id="keys" name="keys">
-								        <?php echo $tcert; ?>
-								    </textarea>
-									<div class="cbp-mc-submit-wrap">
+										<label for="keys">Your one-time<br/>transaction certificate</label>
+								    <textarea id="keys" name="keys" style="background-color:#F8F8F8;color:#09D261"><?php echo $tcert; ?></textarea>
+										<script>new Clipboard('.copybtn');</script>
+										<div class="cbp-mc-submit-wrap">
+											<input class="copybtn cbp-mc-submit" style="background-color:#F8F8F8;color:#09D261" type="button" data-clipboard-action="copy" data-clipboard-target="#keys" value="Ctrl + (C)ertificate" />
+										</div>
+										<div class="cbp-mc-submit-wrap">
 									    <input class="cbp-mc-submit" type="submit" value="3) Go back to Harries Luchtk." />
-									</div>
+										</div>
 								</form>
 							<?php } ?>
 					</div>

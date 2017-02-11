@@ -14,12 +14,14 @@ Configuration::defaultInstance()->load("bankid-config.xml");
 if(isset($_GET['step'])){$step = $_GET['step'];}
 else{$step=0;}
 
+// Get overview of available banks
 if($step==0){
 	$comm = new Communicator();
 	$Model = $comm->getDirectory();
 	$_SESSION['redirectUrl'] = $_POST['redirectUrl'];
 }
 
+// Create a transaction request and redirect to bank
 if($step==1){
 	$comm = new Communicator();
 	$a = new AuthenticationRequest();
@@ -35,6 +37,7 @@ if($step==1){
 	header('Location: '.$url);
 }
 
+// Get and decrypt the response
 if($step==2){
 	$comm = new Communicator();
 	$s = new StatusRequest();
@@ -66,8 +69,10 @@ if($step==3){
     	'vendorId' => urlencode('HARRY'),
     );
     $tcert = postJson('http://fabric-module:8080/api/v1/user', $data);
+		$tcert = str_replace(' ', '', $tcert);
 }
 
+// Redirect to initiating application
 if($step==4){
 	header('Location: '."./index-demo.php");
 }
