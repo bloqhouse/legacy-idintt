@@ -1,56 +1,4 @@
-<?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL ^ E_DEPRECATED);
-
-require __DIR__ . '/../library/vendor/autoload.php';
-use BankId\Merchant\Library\Configuration;
-use BankId\Merchant\Library\Communicator;
-use BankId\Merchant\Library\AuthenticationRequest;
-use BankId\Merchant\Library\AssuranceLevel;
-use BankId\Merchant\Library\StatusRequest;
-Configuration::defaultInstance()->load("bankid-config.xml");
-
-if(isset($_GET['step'])){
-	$step = $_GET['step'];
-}
-else{
-	$step=0;
-}
-
-if($step==0){
-	$comm = new Communicator();
-	$Model = $comm->getDirectory();
-}
-
-if($step==1){
-	$comm = new Communicator();
-	$a = new AuthenticationRequest();
-	$a->setIssuerID($_GET['bank']);
-	$a->setLanguage("nl");
-	$a->setExpirationPeriod("PT5M");
-	$a->setEntranceCode("12345ec");
-	$a->setMerchantReference("merchantReference");
-	$a->setRequestedServiceID("17600");
-	$a->setAssuranceLevel("nl:bvn:bankid:1.0:loa2");
-	$Model = $comm->newAuthenticationRequest($a);
-	$url = $Model->getIssuerAuthenticationURL();
-	header('Location: '.$url);
-}
-
-if($step==2){
-	$comm = new Communicator();
-	$s = new StatusRequest();
-	$s->setTransactionID($_GET['trxid']);
-	$Model = $comm->getResponse($s);
-}
-
-if($step==4){
-	header('Location: '."./index-demo.php");
-}
-
-?>
-
+<?php require_once('./applogic.php'); ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -80,54 +28,52 @@ if($step==4){
 				<form class="cbp-mc-form">
 					<div class="cbp-mc-column">
 							<?php if($step==0){ ?>
-							<form action="index.php" method="get">
-							<label for="redirected">Redirected by</label>
-							<input type="text" id="redirected" name="redirected" placeholder="Harries Luchtkasteel" readonly>
-							<label for="bank">Select your bank</label>
-							<select id="bank" name="bank">
-					        <?php foreach ($Model->getIssuersByCountry() as $key=>$value) { ?>
-					            <optgroup label="<?php echo $key; ?>">
-					                <?php foreach ($value as $issuer) { ?>
-					                    <option value="<?php echo $issuer->getID(); ?>"><?php echo $issuer->getName(); ?></option>
-					                <?php } ?>
-					            </optgroup>
-									<?php } ?>
-							</select>
-							<input type="hidden" name="step" value="1">
-							<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="1) Go to your bank" /></div>
-							</form>
+								<form action="index.php" method="get">
+									<label for="initiating">Initiating application</label>
+									<input type="text" id="initiating" name="initiating" placeholder="Harries Luchtkasteel" readonly>
+									<label for="bank">Select your bank</label>
+									<select id="bank" name="bank">
+							        <?php foreach ($Model->getIssuersByCountry() as $key=>$value) { ?>
+							            <optgroup label="<?php echo $key; ?>">
+							                <?php foreach ($value as $issuer) { ?>
+							                    <option value="<?php echo $issuer->getID(); ?>"><?php echo $issuer->getName(); ?></option>
+							                <?php } ?>
+							            </optgroup>
+											<?php } ?>
+									</select>
+									<input type="hidden" name="step" value="1">
+									<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="1) Go to your bank" /></div>
+								</form>
 							<?php } if($step==3){ ?>
 								<form action="index.php" method="get">
 									<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="3) Go back to Harries Luchtk." /></div>
 								</form>
 							<?php } ?>
 					</div>
-					<div class="cbp-mc-column">
-					<form action="index.php" method="get">
-					<?php if($step==2){
-						if (strcasecmp($Model->getStatus(), $Model::$Success) == 0) {
-						    foreach ($Model->getSamlResponse()->getAttributes() as $key => $value) {
-									$key = substr($key, strpos($key, ".") + 1);
-									$key = substr($key, strpos($key, ".") + 1);
-								?>
-									<label for="<?php echo $key; ?>"><?php echo $key; ?></label>
-									<input type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>" placeholder="<?php echo $value; ?>" readonly>
-						    <?php }
-						} else {
-						?>
-						    <pre>Status = <?php echo $Model->getStatus(); ?></pre>
-						<?php } ?>
-	  			</div>
-	  			<div class="cbp-mc-column">
-	  					<label>Give access to</label>
-							<input style="background-color:#09D261" type="text" id="org2" name="org2" placeholder="Harrie's lucht kasteel" readonly><br>
-							<input style="background-color:#09D261" type="text" id="org1" name="org1" placeholder="Autoriteit Financiele Markten" readonly><br>
-							<input style="background-color:#09D261" type="text" id="org1" name="org1" placeholder="De Belastingdienst" readonly>
-							<input type="hidden" name="step" value="3">
-							<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="2) Register my ledger idintt" /></div>
-
-					</form>
-					</div>
+					<?php if($step==2){ ?>
+						<form action="index.php" method="get">
+							<div class="cbp-mc-column">
+									<?php
+										if (strcasecmp($Model->getStatus(), $Model::$Success) == 0) {
+										    foreach ($Model->getSamlResponse()->getAttributes() as $key => $value) {
+													$key = substr($key, strpos($key, ".") + 1);
+													$key = substr($key, strpos($key, ".") + 1);
+												?>
+													<label for="<?php echo $key; ?>"><?php echo $key; ?></label>
+													<input type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>" placeholder="<?php echo $value; ?>" readonly>
+										    <?php }
+										}
+									?>
+			  			</div>
+			  			<div class="cbp-mc-column">
+			  				<label>Give access to</label>
+								<input style="background-color:#09D261" type="text" id="org2" name="org2" placeholder="Harrie's lucht kasteel" readonly><br>
+								<input style="background-color:#09D261" type="text" id="org1" name="org1" placeholder="Autoriteit Financiele Markten" readonly><br>
+								<input style="background-color:#09D261" type="text" id="org1" name="org1" placeholder="De Belastingdienst" readonly>
+								<input type="hidden" name="step" value="3">
+								<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="2) Register my ledger idintt" /></div>
+							</div>
+						</form>
 					<?php } ?>
 				</form>
 			</div>
