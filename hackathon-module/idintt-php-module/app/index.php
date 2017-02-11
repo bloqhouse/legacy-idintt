@@ -45,6 +45,10 @@ if($step==2){
 	$Model = $comm->getResponse($s);
 }
 
+if($step==4){
+	header('Location: '."./index-demo.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -66,23 +70,20 @@ if($step==2){
 		<div class="container">
 			<header class="clearfix">
 				<span>idintt</span>
-				<h1>Your trusted blockchain identity provider</h1>
-				<!--
-				<nav>
-					<a href="#" class="bp-icon bp-icon-prev" data-info="Previous step"><span>Previous</span></a>
-					<a href="#" class="bp-icon bp-icon-next" data-info="Next step"><span>Next</span></a>
-					<a href="#" class="bp-icon bp-icon-drop" data-info="Information"><span>Information</span></a>
-					<a href="#" class="bp-icon bp-icon-archive" data-info="Contact"><span>Contact</span></a>
-				</nav>
-				-->
+				<?php if($step==3){ ?>
+					<h1 style="background-color:#09D261">You're now registered on the blockchain</h1>
+				<?php } else { ?>
+					<h1>Your trusted blockchain identity provider</h1>
+				<?php } ?>
 			</header>
 			<div class="main">
 				<form class="cbp-mc-form">
 					<div class="cbp-mc-column">
-							<form action="index.php" method="get">
-							<label for="bank">Select your bank</label>
-
 							<?php if($step==0){ ?>
+							<form action="index.php" method="get">
+							<label for="redirected">Redirected by</label>
+							<input type="text" id="redirected" name="redirected" placeholder="Harries Luchtkasteel" readonly>
+							<label for="bank">Select your bank</label>
 							<select id="bank" name="bank">
 					        <?php foreach ($Model->getIssuersByCountry() as $key=>$value) { ?>
 					            <optgroup label="<?php echo $key; ?>">
@@ -95,15 +96,14 @@ if($step==2){
 							<input type="hidden" name="step" value="1">
 							<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="1) Go to your bank" /></div>
 							</form>
-
-							<?php } else { ?>
-								<select id="bank" name="bank" disabled>
-									<option value="HKVSNL3A">HKVSNL3A</option>
-								</select>
+							<?php } if($step==3){ ?>
+								<form action="index.php" method="get">
+									<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="3) Go back to Harries Luchtk." /></div>
+								</form>
 							<?php } ?>
-
 					</div>
 					<div class="cbp-mc-column">
+					<form action="index.php" method="get">
 					<?php if($step==2){
 						if (strcasecmp($Model->getStatus(), $Model::$Success) == 0) {
 						    foreach ($Model->getSamlResponse()->getAttributes() as $key => $value) {
@@ -120,11 +120,14 @@ if($step==2){
 	  			</div>
 	  			<div class="cbp-mc-column">
 	  					<label>Give access to</label>
-							<input type="text" id="org2" name="org2" placeholder="Harrie's lucht kasteel" readonly><br>
-							<input type="text" id="org1" name="org1" placeholder="Autoriteit Financiele Markten" readonly><br>
-							<input type="text" id="org1" name="org1" placeholder="De Belastingdienst" readonly>
-							<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="2) Register and return" /></div>
-	  			</div>
+							<input style="background-color:#09D261" type="text" id="org2" name="org2" placeholder="Harrie's lucht kasteel" readonly><br>
+							<input style="background-color:#09D261" type="text" id="org1" name="org1" placeholder="Autoriteit Financiele Markten" readonly><br>
+							<input style="background-color:#09D261" type="text" id="org1" name="org1" placeholder="De Belastingdienst" readonly>
+							<input type="hidden" name="step" value="3">
+							<div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="2) Register my ledger idintt" /></div>
+
+					</form>
+					</div>
 					<?php } ?>
 				</form>
 			</div>
