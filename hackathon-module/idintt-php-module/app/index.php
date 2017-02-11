@@ -23,7 +23,7 @@
 				<?php } ?>
 			</header>
 			<div class="main">
-				<form class="cbp-mc-form">
+				<div class="cbp-mc-form">
 					<div class="cbp-mc-column">
 							<?php if($step==0){ ?>
 								<form action="index.php" method="get">
@@ -81,7 +81,7 @@
 							</div>
 						</form>
 					<?php } ?>
-				</form>
+				</div>
 			</div>
 		</div>
 	</body>
