@@ -30,7 +30,7 @@ if($step==1){
 	$a->setExpirationPeriod("PT5M");
 	$a->setEntranceCode("12345ec");
 	$a->setMerchantReference("merchantReference");
-	$a->setRequestedServiceID("17600");
+	$a->setRequestedServiceID("20544");
 	$a->setAssuranceLevel("nl:bvn:bankid:1.0:loa2");
 	$Model = $comm->newAuthenticationRequest($a);
 	$url = $Model->getIssuerAuthenticationURL();

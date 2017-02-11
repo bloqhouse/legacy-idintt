@@ -19,7 +19,7 @@
 			<header class="clearfix">
 				<span>idintt</span>
 				<?php if($step==3){ ?>
-					<h1 style="background-color:#09D261">You're now registered on the blockchain</h1>
+					<h1 style="background-color:#09D261">You're identity is registered on the blockchain</h1>
 				<?php } else { ?>
 					<h1>Your trusted blockchain identity provider</h1>
 				<?php } ?>
