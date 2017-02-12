@@ -13,7 +13,7 @@ export class ChaincodeLocalConfig {
       };
     });
     users.push({
-      enrollId:     'WebAppAdmin',
+      enrollId:     'IdinAdmin',
       enrollSecret: 'DJY27pEnl16d'
     });
 

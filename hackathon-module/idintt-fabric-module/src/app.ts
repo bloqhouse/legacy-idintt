@@ -32,14 +32,14 @@ class App {
         });
 
         // Log requests
-        app.use(morgan('dev', <morgan.Options> {
-            stream: {
-                skip: (request: Request, response: Response) => response.statusCode < 400,
-                write: (message: string): void => {
-                    this.logger.debug(message);
-                }
-            }
-        }));
+        // app.use(morgan('dev', <morgan.Options> {
+        //     stream: {
+        //         skip: (request: Request, response: Response) => response.statusCode < 400,
+        //         write: (message: string): void => {
+        //             this.logger.debug(message);
+        //         }
+        //     }
+        // }));
 
         // Start server
         const port = (process.env.VCAP_PORT || process.env.PORT || 8080);

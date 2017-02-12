@@ -21,6 +21,8 @@ if($step==0){
 	$Model = $comm->getDirectory();
 	if(isset($_POST['redirectUrl'])){$_SESSION['redirectUrl']= $_POST['redirectUrl'];}
 	else{$_SESSION['redirectUrl']="index.php";}
+    if(isset($_POST['uid'])){$_SESSION['uid']= $_POST['uid'];}
+    else{$_SESSION['uid']="idin_user1";}
 }
 
 // Create a transaction request and redirect to bank
@@ -69,7 +71,7 @@ if($step==3){
     	'name' => urlencode('Name'), // TODO
     	'bin' => urlencode($_GET['bin']),
     	'vendorId' => urlencode('HARRY'),
-    	'uid' => urlencode(	$_SESSION["uid"])
+    	'uid' => urlencode($_SESSION["uid"])
     );
     $tcert = postJson('http://fabric-module:8080/api/v1/user', $data);
 	$tcert = str_replace(' ', '', $tcert);

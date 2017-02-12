@@ -1,0 +1,30 @@
+version: "2"
+services:
+  server:
+    build: ../fabric-boilerplate/server
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+      - MEMBERSRVC_ADDR=membersrvc:7054
+      - PEER_ADDR=vp0:7051
+    volumes:
+      - ../fabric-boilerplate/server/src:/usr/src/app/src
+      - ../fabric-boilerplate/server/resources:/usr/src/app/resources
+      - ../fabric-boilerplate/blockchain/src:/usr/src/blockchain/src
+    links:
+      - membersrvc
+      - vp0
+    command: bash -c "sleep 8; cat chaincodeId || (grunt build; npm run deploy;) && grunt"
+
+  # Web client
+  client:
+    build: ../fabric-boilerplate/client
+    ports:
+        - "4200:4200"
+        - "49153:49153"
+    volumes:
+        - ../fabric-boilerplate/client/src:/usr/src/app/src
+        - ../fabric-boilerplate/client/angular-cli.json:/usr/src/app/angular-cli.json
+        - ../fabric-boilerplate/client/tslint.json:/usr/src/app/tslint.json
+    command: ng serve --host 0.0.0.0

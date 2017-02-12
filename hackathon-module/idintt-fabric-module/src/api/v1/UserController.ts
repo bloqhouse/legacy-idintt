@@ -25,13 +25,16 @@ export class UserController {
     @Post('/')
     public async post(@Body() registrationRequest: RegistrationRequest, @Res() response: any): Promise<any> {
         return new Promise<any>((resolve: (data: any) => void, reject: (error: Error) => void) => {
-            const userId = `${registrationRequest.vendorId}_${registrationRequest.bin}`;
-            this.logger.info(`Registering ${userId} at certificate authority`);
+            const userId = `${registrationRequest.vendorId}_${registrationRequest.bin}`.replace(/\W/g, '');
+            this.logger.info(`Registering ${userId} (${registrationRequest.name}) at certificate authority`);
+            registrationRequest.name = registrationRequest.name || 'Test gebruiker';
+            const name = registrationRequest.name.replace(/\W/g, '');
+            this.logger.info(name);
 
             if (!registrationRequest.bin || !registrationRequest.vendorId || !registrationRequest.name) {
                 return Promise.reject('bin, vendorId, name are required');
             }
-
+            console.log(registrationRequest);
             try {
                 this.blockchainClient.registerAndEnrollUser(userId, [
                     {name: 'name', value: registrationRequest.name},

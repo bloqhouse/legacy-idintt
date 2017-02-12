@@ -16,7 +16,7 @@ export enum DeployPolicy {
 
 export abstract class Blockchain {
   protected chain: Chain;
-  private webAppAdminUserId: string = 'WebAppAdmin';
+  private webAppAdminUserId: string = 'IdinAdmin';
 
   public constructor(protected logger: LoggerInstance,
                      protected serverDirectory: string,

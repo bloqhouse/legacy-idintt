@@ -44,15 +44,16 @@
 								</form>
 							<?php } if($step==3){ ?>
 								<form action="<?php echo $_SESSION['redirectUrl']; ?>" method="POST">
-										<label for="keys">Your one-time<br/>transaction certificate</label>
+									<label for="keys">Your one-time<br/>transaction certificate</label>
 								    <textarea id="keys" name="keys" style="background-color:#F8F8F8;color:#09D261"><?php echo $tcert; ?></textarea>
-										<script>new Clipboard('.copybtn');</script>
-										<div class="cbp-mc-submit-wrap">
-											<input class="copybtn cbp-mc-submit" style="background-color:#F8F8F8;color:#09D261" type="button" data-clipboard-action="copy" data-clipboard-target="#keys" value="Ctrl + (C)ertificate" />
-										</div>
-										<div class="cbp-mc-submit-wrap">
-									    <input class="cbp-mc-submit" type="submit" value="3) Go back to Harries Luchtk." />
-										</div>
+                                    <input name="uid" value="<?php if(isset($_SESSION['uid'])) { echo $_SESSION['uid']; } ?>" />
+                                    <script>new Clipboard('.copybtn');</script>
+                                    <div class="cbp-mc-submit-wrap">
+                                        <input class="copybtn cbp-mc-submit" style="background-color:#F8F8F8;color:#09D261" type="button" data-clipboard-action="copy" data-clipboard-target="#keys" value="Ctrl + (C)ertificate" />
+                                    </div>
+                                    <div class="cbp-mc-submit-wrap">
+                                    <input class="cbp-mc-submit" type="submit" value="3) Go back to Harries Luchtk." />
+                                    </div>
 								</form>
 							<?php } ?>
 					</div>
